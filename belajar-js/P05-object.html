@@ -10,28 +10,28 @@
 <body>
     <script>
         //function deklaration
-            function dataMurid(nama, nisn, asalSekolah, mapelFav) {
+        function dataMurid(nama, nisn, asalSekolah, mapelFav) {
             var murid = {};
-                murid.nama = nama,
+            murid.nama = nama,
                 murid.nisn = nisn,
                 murid.asalSekolah = asalSekolah,
                 murid.mapelFav = mapelFav;
-                return murid;
-            }
+            return murid;
+        }
         var murid1 = dataMurid("Rahmad", 123456, "SMP Negeri 1", ['mtk', 'engres', 'informatika']);
-        console.log(murid1);
 
-            // function constructor
-            function Murid(nama, nisn, asalSekolah, mapelFav) {
-                //this adalah...
-                this.nama = nama; 
-                this.nisn = nisn;
-                this.asalSekolah = asalSekolah;
-                this.mapelFav = mapelFav;
-            }
-            //new adalah...
-            var murid2 = new Murid('akbar', 2873698, 'smamga', ['informatika', 'mtk', 'bing']);
-            console.log(murid2);
+        // function constructor
+        /* kalau memakai konstraktor sudah dibikinin untuk var object nya, 
+        dan returnnya, jadi tidak perlu buat manual */
+        function Murid(nama, nisn, asalSekolah, mapelFav) {
+            //this adalah...
+            this.nama = nama;
+            this.nisn = nisn;
+            this.asalSekolah = asalSekolah;
+            this.mapelFav = mapelFav;
+        }
+        //new adalah...
+        var murid2 = new Murid('akbar', 2873698, 'smamga', ['informatika', 'mtk', 'bing']);
     </script>
 </body>
 
