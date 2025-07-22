@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P04</title>
+</head>
+<body>
+    <script>
+        // quest juragan angkot array
+
+
+let user = prompt('pilih : gajah, semut, ondragend');
+let comp = Math.random();
+
+if (comp < 0.34) {
+    comp = 'gajah';
+} else if (comp >= 0.34 && comp < 0.67) {
+    comp = 'orang';
+} else {
+    comp = 'semut';
+}
+console.log(comp);
+
+let hasil = '';
+
+if (user == comp) {
+    hasil = 'Seri';
+} else if (user == 'gajah' && comp == 'orang') {
+    hasil = 'Menang';
+} else if (user == 'semut' && comp == 'gajah') {
+    hasil = 'menang';
+} else if (user == 'orang' && comp == 'semut') {
+    hasil = 'menang';
+} else {
+    hasil = 'kalah';
+}
+// alert('kamu memilih :' + user + '\nkomputer memilih : ' + comp + '\nhasil : ' + hasil);
+
+if (hasil == 'menang') {
+    alert('anda MENANG');
+} else if (hasil == 'seri') {
+    alert('anda SERI');
+} else {
+    alert('anda KALAH');
+}
+    </script>
+</body>
+</html>

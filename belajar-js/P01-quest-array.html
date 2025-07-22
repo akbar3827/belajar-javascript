@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P01</title>
+</head>
+<body>
+    <script>
+        var penumpang = [];
+
+var tambahPenumpang = function (namaPenumpang, penumpang) {
+     if (penumpang.length === 0) {
+          penumpang.push(namaPenumpang);
+     }
+     else {
+          for (var i = 0; i < penumpang.length; i++) {
+               if (penumpang[i] === undefined) {
+                    penumpang[i] = namaPenumpang;
+               }
+               else if (penumpang[i] == namaPenumpang) {
+                    console.log('nama ' + namaPenumpang + ' sudah ada di dalam angkot');
+               }
+               else if (i == penumpang.length - 1) {
+                    penumpang.push(namaPenumpang);
+               }
+          }
+     }
+     return penumpang;
+}
+var hapusPenumpang = function (namaPenumpang, penumpang) {
+     if (penumpang.length == 0) {
+          console.log('angkot sedang kosong');
+     } else {
+          for (var i = 0; i < penumpang.length; i++) {
+               if (penumpang[i] === namaPenumpang) {
+                    penumpang[i] = undefined;
+               }
+          }
+          console.log(namaPenumpang + ' tidak berada dalam angkot');
+     }
+     return penumpang;
+}
+
+var mahasiswa = {
+     nama: 'akbar kurniawan',
+     lulus: true,
+     IPSemester: [2.90, 3.10, 3.43, 2.58, 3.00],
+     IPKumulatif: function () {
+          var total = 0;
+          var ips = this.IPSemester;
+          for (var i = 0; i < IPSemester.length; i++) {
+               total += ips[i];
+          }
+          return total / ips.length;
+     }
+};
+mahasiswa.IPKumulatif();
+    </script>
+</body>
+</html>
