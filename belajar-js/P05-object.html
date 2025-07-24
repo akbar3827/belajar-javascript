@@ -9,6 +9,14 @@
 
 <body>
     <script>
+        // this 
+        var obj = {};
+        obj.fungsi = function() {
+            console.log('hallo world');
+            console.log(this);
+        }
+        obj();
+        
         //function deklaration
         function dataMurid(nama, nisn, asalSekolah, mapelFav) {
             var murid = {};
@@ -23,6 +31,7 @@
         // function constructor
         /* kalau memakai konstraktor sudah dibikinin untuk var object nya, 
         dan returnnya, jadi tidak perlu buat manual */
+        // this === window
         function Murid(nama, nisn, asalSekolah, mapelFav) {
             //this adalah...
             this.nama = nama;
