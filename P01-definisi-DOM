@@ -25,6 +25,6 @@ Event handling...
 1. Root Node // akarnya atau sumbernya Node dari semua Node lain.
 2. Paren Node // node yang berada satu tingkat dari node lain.
 3. Child Node // Node yang berada satu tingkat dibawah node lain.
-4. Children //Child node yang bertype element html.
-5. siblings //child node yang parentnya sama dengan child node lain, bisa dibilang saudaranya lah.
+4. Children // Child node yang bertype element html.
+5. siblings // child node yang parentnya sama dengan child node lain, bisa dibilang saudaranya lah.
 6. descendent // cucu dari parent atau bisa disebut juga anak dari child node.
