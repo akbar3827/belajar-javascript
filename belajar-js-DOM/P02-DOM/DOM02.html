@@ -27,7 +27,6 @@
 </head>
 
 <body>
-
   <h1 id="judul">Hello World</h1>
   <div id="container">
     <section id="a">
@@ -47,26 +46,37 @@
   </div>
 
   <script>
-    const judul = document.getElementById('judul');
-    const p = document.getElementsByTagName('p');
-    const item = document.getElementsByTagName('li')
-    const p1 = document.getElementsByClassName('p1')[0];
+    const sectionA = document.getElementById('a');
 
-    judul.style.color = 'red';
-    judul.innerHTML = 'barbarun';
-    p1.style.fontWeight = '800';
+    const judul = document.getElementById('judul');
+    judul.setAttribute('name', 'akbar');
+
+    const newP = document.createElement('p');
+    const newTextP = document.createTextNode('lorem ipsum dorot');
+    newP.appendChild(newTextP);
+    sectionA.appendChild(newP)
+
+    const a = sectionA.querySelector('a');
+    sectionA.removeChild(a);
+
+    const paragraf = document.createElement('p');
+    paragraf.textContent = "Ini paragraf dari JavaScript";
+    sectionA.appendChild(paragraf);
+
+    const ul = document.querySelector('ul');
+    const newli = document.createElement('li');
+    const newTextli = document.createTextNode('new item');
+    const li2 = ul.querySelector('li:nth-child(2)');
+    newli.appendChild(newTextli);
+    ul.insertBefore(newli, li2);
+
+    const sectionB = document.getElementById('b');
+    const p4 = sectionB.querySelector('p');
+    const newText = document.createTextNode('ini paragraf baru');
+    p4.textContent = newText.textContent; 
+    sectionB.replaceChild(p4)
 
     
-    // kalau ingin berbeda beda colornya maka menggunakan yang manual
-    p[0].style.backgroundColor = 'lightblue';
-    p[1].style.backgroundColor = 'lightgray';
-    p[2].style.backgroundColor = 'lightyellow';
-    p[3].style.backgroundColor = 'lightgreen';
-
-  // kalau ingin semuanya sama (konsisten) colornya, bisa pakai loop agar lebih efisien
-    for (let i = 0; i < item.length; i++) {
-      item[i].style.backgroundColor = '#ccc';
-    }
   </script>
 </body>
 

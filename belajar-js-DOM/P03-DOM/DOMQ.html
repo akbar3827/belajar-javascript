@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .default {
+      background-color: #001F24;
+      color: lightblue;
+    }
+
+    .kotak {
+      width: 120px;
+      height: 30px;
+      margin: 10px auto;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="h1">Bermain dengan warna</h1>
+  <button id="button" type="button">submit</button>
+  <br>
+  <br>
+  <div class="kotak red"></div>
+  <label for="r">R
+    <input type="range" name="r" min="0" max="255">
+  </label>
+  <br>
+  <div class="kotak green"></div>
+  <label for="g">G
+    <input type="range" name="g" min="0" max="255">
+  </label>
+  <br>
+  <div class="kotak blue"></div>
+  <label for="b">B
+    <input type="range" name="b" min="0" max="255">
+  </label>
+  <br>
+
+
+
+  <script>
+    const h1 = document.getElementById('h1');
+    const button = document.getElementById('button');
+    const body = document.body;
+
+    button.addEventListener("click", function () {
+      document.body.classList.toggle('default');
+    });
+
+    const newBottom = document.createElement('button');
+    const IsiNB = document.createTextNode('New Button');
+    newBottom.appendChild(IsiNB);
+    newBottom.setAttribute('type', 'button');
+    newBottom.setAttribute('id', 'newBotton')
+    button.after(newBottom);
+    // untuk input warna random
+    newBottom.addEventListener('click', function () { 
+      const r = Math.round(Math.random() * 255);
+      const g = Math.round(Math.random() * 255);
+      const b = Math.round(Math.random() * 255);
+      document.body.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')'
+    });
+
+    // range warna 
+    const range = document.querySelectorAll('input');
+    const kotak = document.querySelectorAll('div');
+    for (let i = 0; i < range.length; i++) {
+      range[i].addEventListener('input', function () {
+
+        let red = range[0].value;
+        let green = range[1].value;
+        let blue = range[2].value;
+        kotak[i].style.backgroundColor = `rgb(${merah}, ${hijau}, ${biru})`;
+      })
+    };
+
+    document.body.addEventListener('mousemove', function (event) {
+      const PosisiX = Math.round((event.clientX / window.innerWidth) * 255);
+      const PosisiY = Math.round((event.clientY / window.innerHeight) * 255);
+      document.body.style.backgroundColor = 'rgb(' + PosisiX + ',' + PosisiY + ',100)'
+    });
+  </script>
+</body>
+
+</html>
