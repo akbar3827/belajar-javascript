@@ -143,7 +143,7 @@
     // });
 
     document.querySelector('.container').addEventListener('click', (informasiEvent) => {
-      if (informasiEvent.target.classList.contains('close')) {
+      if (informasiEvent.target.classList.contains('close')) {  
         informasiEvent.stopPropagation();
         informasiEvent.target.parentElement.style.display = ('none');
         console.log(informasiEvent.target);
