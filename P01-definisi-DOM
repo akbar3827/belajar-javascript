@@ -1,0 +1,36 @@
+Document Object Model (DOM) adalah alat utama javascript untuk berinteraksi dengan HTML. ini sistem/model data yang dipakai JavaScript buat baca dan manipulasi isi HTML.
+  --DOM tree adalah Representasi berbentuk pohon dari struktur HTML → menunjukkan hubungan antara elemen (parent, child, sibling, dll). DOM tree juga 
+    sangat penting untuk memilih dan menyeleksi sebuah element dan menelusurinya.
+  ---Node adalah seluruh element element html. 
+  urutan DOM tree
+  ------------------------------------------------
+  | --> window                                    |
+  |       |--> document                           |
+  |              |--> HTMl                        |
+  |                     |--> seluruh element html |
+  |       |--> history                            |
+  |       |--> location                           |
+  ------------------------------------------------
+DOM selection...
+  bagaimana caranya menyeleksi atau mengakses/bagaimana kita memilih sebuah element yang ada di document.
+DOM manipulation...
+  memanipulasi element seperti mengubah, menghapus, dll.
+DOM traversal...
+    menelusuri element html lewat element html yang lain.
+Event handling...
+    melakukan perubahan pada DOM nya atau menelusuir DOM nya karena ada trigger misalnya mau stick klick, kursor digerakkan.
+1. Nodelist dan htmlcollection strukturnya mmirip dengan array
+2. htmlcollection bersifat live sedangkan nodelist tidak.
+      
+1. Root Node // akarnya atau sumbernya Node dari semua Node lain.
+2. Paren Node // node yang berada satu tingkat dari node lain.
+3. Child Node // Node yang berada satu tingkat dibawah node lain.
+4. Children // Child node yang bertype element html.
+5. siblings // child node yang parentnya sama dengan child node lain, bisa dibilang saudaranya lah.
+6. descendent // cucu dari parent atau bisa disebut juga anak dari child node.
+
+Event : pada javascript merepresentasikan sebuah kejadian yang terjadi didalam DOM, dan kejadiannya bisa dilakukan oleh user.
+ataupun bisa dilakukan secara otomatis oleh API.
+contohnya : mouse event, keyboard event, klick event, dll. intinya semua kejadian yang dilakukan oleh user.
+Event handler : adalah fungsi yang akan dipanggil ketika event terjadi.
+Event listener : adalah fungsi yang akan dipanggil ketika event terjadi, tapi bisa dipanggil lebih dari satu kali.

@@ -24,22 +24,22 @@ console.log(comp);
 
 let hasil = '';
 
-if (user == comp) {
+if (user === comp) {
     hasil = 'Seri';
-} else if (user == 'gajah' && comp == 'orang') {
+} else if (user === 'gajah' && comp === 'orang') {
     hasil = 'Menang';
-} else if (user == 'semut' && comp == 'gajah') {
+} else if (user === 'semut' && comp === 'gajah') {
     hasil = 'menang';
-} else if (user == 'orang' && comp == 'semut') {
+} else if (user === 'orang' && comp === 'semut') {
     hasil = 'menang';
 } else {
     hasil = 'kalah';
 }
 // alert('kamu memilih :' + user + '\nkomputer memilih : ' + comp + '\nhasil : ' + hasil);
 
-if (hasil == 'menang') {
+if (hasil === 'menang') {
     alert('anda MENANG');
-} else if (hasil == 'seri') {
+} else if (hasil === 'seri') {
     alert('anda SERI');
 } else {
     alert('anda KALAH');
