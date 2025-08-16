@@ -123,12 +123,20 @@
 
 
   <script>
-
+    // ambil element parentnya (div parent)
     const induk = document.querySelector('.parent')
+
+    // ambil image yang ada di div child
     const thumbs = document.querySelectorAll('.thumb')
+
+    // ketika salah satu thumbnail diklik akan menampilkan 
     induk.addEventListener('click', (event) => {
     if (event.target.classList.contains('thumb')) {
+      // image large akan berubah sesuai dengan image yang kita klick
     document.querySelector('.large').src = event.target.src;
+
+
+    // untuk menghapus opacity ketika kita mengklik thumbnail yang lain 
     thumbs.forEach((thum) => {
     if (thum.classList.contains('opacity')) {
     thum.classList.remove('opacity');

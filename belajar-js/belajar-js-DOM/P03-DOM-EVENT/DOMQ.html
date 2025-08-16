@@ -29,7 +29,7 @@
 </head>
 
 <body>
-  <h1 id="h1">Bermain dengan warna</h1>
+  <h1 id="h1" class="h1">Bermain dengan warna</h1>
   <button id="button" type="button">submit</button>
   <br>
   <br>
@@ -57,7 +57,7 @@
     const body = document.body;
 
     button.addEventListener("click", function () {
-      document.body.classList.toggle('default');
+      document.h1.classList.toggle('default');
     });
 
     const newBottom = document.createElement('button');

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control my-5 input-keywoard" placeholder="search movie">
+          <button class="btn btn-outline-secondary my-5 search-input" type="button" id="button-addon2">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row container-movie">
+    </div>
+
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="movieDetailModal" aria-hidden="true" aria-labelledby="movieDetailModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="movieDetailModal">Modal</h1>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+      // // menggunakan Fetch 
+      // const searchBotton = document.querySelector('.search-input');
+
+      // //ketika tombol search diklik
+      // searchBotton.addEventListener('click', function () {
+
+      //   const inputKeywoard = document.querySelector('.input-keywoard')
+      //   fetch(`http://www.omdbapi.com/?apikey=9f560f35&s=${inputKeywoard.value}`)
+      //     // menggunakan Promise untuk menangani hasil dari fetch
+      //     // jika berhasil
+      //     // respon akan diubah menjadi JSON
+      //     .then(result => result.json())
+      //     // json akan diubah menjadi object
+      //     .then(result => {
+      //       const movie = result.Search;
+      //       let card = '';
+      //       movie.forEach(m => {
+      //         // memanggil fungsi showCardMovie untuk memunculkan semua film di page HTML
+      //         card += showCardMovie(m);
+      //         const movieContainer = document.querySelector('.container-movie');
+      //         movieContainer.innerHTML = card;
+      //       });
+      //       const modalDetailButton = document.querySelectorAll('.modal-detail-button');
+      //       modalDetailButton.forEach(btn => {
+      //         btn.addEventListener('click', function () {
+      //           btnID = btn.dataset.imdbid;
+      //           fetch(`http://www.omdbapi.com/?apikey=9f560f35&i=${btnID}`)
+      //           // respon.json() menghasilakan Promise lagi
+      //             .then(response => response.json())
+      //             // hasilnya akan diubah menjadi object yang berisi detail film
+      //             .then(movieDetail => {
+      //               // memaaukkan detail film ke dalam modal-body
+      //               const movieDetailContainer = document.querySelector('.modal-body');
+      //               movieDetailContainer.innerHTML = showDetailMovie(movieDetail);
+      //             });
+      //         })
+      //       });
+      //     });
+      //   });
+
+
+
+
+
+      // ketika tombol search diklik
+      const searchButton = document.querySelector('.search-input');
+      // ketika tombol search diklik
+      searchButton.addEventListener('click', async function() {
+        try {
+        const inputKeyword = document.querySelector('.input-keywoard');
+        const movies = await getMovie(inputKeyword.value);
+        updateMovie(movies.Search)
+        } catch (err) {
+          error(err)
+        }
+      });
+      // fungsi async adalah untuk memberi tahu bahwa fungsi ini berjalan secara asynchronous
+      // await digunakan didalam fungsi async untuk menunggu hasil dari fungsi yang diberi kode await
+
+      // ketika tombol detail diklik
+      document.addEventListener('click', async function(event) {
+        if(event.target.classList.contains('modal-detail-button')) {
+          const btnID = event.target.dataset.imdbid;
+          const movieDetail = await getMovieDetail(btnID);
+          updateDetailMovie(movieDetail);
+        }
+      })
+
+
+
+
+
+
+      // fungsi untuk mendapatkan data film
+      function getMovie(Keyword) {
+        return fetch(`http://www.omdbapi.com/?apikey=9f560f35&s=${Keyword}`)
+        .then(respon => respon.json())
+        .then(respon => respon);
+        }
+
+        // fungsi untuk mendapatkan data film detail 
+        function getMovieDetail(btnID) {
+          return fetch(`http://www.omdbapi.com/?apikey=9f560f35&i=${btnID}`)
+          .then(response => response.json())
+          .then(response => response);
+        }
+
+        // fungsi untuk meletakkan didalam modal body
+        function updateDetailMovie(movieDetail) {
+          const movieDetailContainer = document.querySelector('.modal-body');
+          movieDetailContainer.innerHTML = showDetailMovie(movieDetail);
+        }
+
+        // fungsi untuk meletakkan film ke dalam container movie
+        function updateMovie(movie) {
+          let card = '';
+          movie.forEach(element => {
+            card += showCardMovie(element);
+            const movieContainer = document.querySelector('.container-movie');
+            movieContainer.innerHTML = card;
+          });
+        }
+
+        function error(err) {
+          console.error('Error fetching movies:', err);
+          const movieContainer = document.querySelector('.container-movie');
+          movieContainer.innerHTML = showError();
+        }
+
+        // Function to generate movie card HTML
+        function showCardMovie(m) {
+          return `
+        <div class="col-md-4 my-3">
+          <div class="card">
+            <img src="${m.Poster}" class="card-img-top" alt="${m.Title}">
+            <div class="card-body">
+              <h5 class="card-title">${m.Title}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">${m.Year}</h6>
+              <a href="#" class="btn btn-primary modal-detail-button" data-bs-target="#movieDetailModal" 
+              data-bs-toggle="modal" data-imdbid="${m.imdbID}">View Details</a>
+            </div>
+          </div>
+        </div>`;
+        };
+
+        function showDetailMovie(i) {
+          return `
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <img src="${i.Poster}" class="img-fluid" alt="${i.Title}">
+                      </div>
+                      <div class="col-md-8">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <h4>${i.Title} (${i.Year})</h4>
+                          </li>
+                          <li class="list-group-item"><strong>Director:</strong> ${i.Director}</li>
+                          <li class="list-group-item"><strong>Actors:</strong> ${i.Actors}</li>
+                          <li class="list-group-item"><strong>Writer:</strong> ${i.Writer}</li>
+                          <li class="list-group-item"><strong>Plot:</strong><br>${i.Plot}</li>
+                          <li class="list-group-item"><strong>Genre:</strong> ${i.Genre}</li>
+                          <li class="list-group-item"><strong>Runtime:</strong> ${i.Runtime}</li>
+                          <li class="list-group-item"><strong>Rating:</strong> ${i.imdbRating}/10</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>`;
+        }
+
+        function showError() {
+         return `<p>Error loading movies.</p>`;
+        }
+    </script>
+</body>
+
+</html>

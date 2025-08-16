@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>gabut</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control my-5 input-keywoard" placeholder="search movie">
+          <button class="btn btn-outline-secondary my-5 search-input" type="button" id="button-addon2">Search</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row container-movie">
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="movieDetailModal" aria-hidden="true" aria-labelledby="movieDetailModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="movieDetailModal">Movie Details</h1>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+  <script>
+    $('.input-keywoard').on('input', function (e) {
+       // memanggil ajax ketika input
+      $.ajax({
+        // Menggunakan OMDB API untuk mencari film berdasarkan input
+        url: `http://www.omdbapi.com/?apikey=9f560f35&s=${$('.input-keywoard').val()}`,
+        // jika berhasil
+        success: function (result) {
+          // ambil array film saja yang berisi object film
+          const dm = result.Search;
+          // variabel card untuk menampung semua card film (tidak hanya satu)
+          let card = ``;
+          dm.forEach(m => {
+            //memanggil fungsi showCardMovie untuk memunculkan semua film di page HTML
+            card += showCardMovie(m);
+          });
+          // menampilkan semua card film ke dalam container-movie
+          $('.container-movie').html(card);
+  
+          // Event handler untuk tombol detail
+          // jika tombol detail diklik, ambil imdbID dari data atribut
+          $(document).on('click', '.modal-detail-button', function () {
+            // ambil imdbID dari data atribut
+            const imdbID = $(this).data('imdbid');
+            $.ajax({
+              url: `http://www.omdbapi.com/?apikey=9f560f35&i=${imdbID}`,
+              // jika berhasil
+              success: function (result) {
+                // callback fungsi showDetailMovie untuk menampilkan detail film
+                const movieDetail = showDetailMovie(result);
+                // menampilkan detail film ke dalam modal-body
+                $('.modal-body').html(movieDetail);
+              },
+              // jika gagal
+              error: function (error) {
+                console.log('Error:', error);
+                $('.modal-body').html('<p>Error loading movie details.</p>');
+              }
+            });
+          });
+        },
+        //jika gagal
+        error: function (reject) {
+          console.log(reject.responseText);
+          $('.container-movie').html('<p>Error loading movies.</p>');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

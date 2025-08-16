@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h3>my videos</h3>
+  <ul>
+    <li data-duration="15:17">Teknik pomodoro</li
+    <li data-duration="11:18">JAVASCRIPT ADVANCE | higher order function</li>
+    <li data-duration="21:40">JAVASCRIPT ADVANCE | arrow function</li>
+    <li data-duration="20:03">website gimmic</li>
+    <li data-duration="24:17">JAVASCRIPT ADVANCE | closure</li>
+    <li data-duration="10:10">JAVASCRIPT ADVANCE | execution content</li>
+    <li data-duration="23:19">JAVASCRIPT ADVANCE | prototype</li>
+    <li data-duration="20:21">tanya jawab</li>
+    <li data-duration="25:17">googling</li>
+    <li data-duration="11:07">JAVASCRIPT ADVANCE | object.create()</li>
+    <li data-duration="20:27">JAVASCRIPT ADVANCE | object (revised)</li>
+    <li data-duration="18:27">5 tips mengtasi error</li>
+  </ul>
+   <p id="total"></p>
+   <p id="jmlhVid"> jumlah video : </p>
+
+
+
+  <script>
+    const intejer = [-1, 2, 4, 2, -3, -5, 5, 9, 10, 7, -2, -5, 4, 9, 8, 9, 0, -9, -8, 8, 6, 7, 1];
+    // kalikan 3 seluruh intejernya
+    let newIntejer = intejer.map((i) => i * 3);
+    // jumlahkan seluruh intejernya
+    let jmlhIntejer = newIntejer.reduce((accumulator, current) => accumulator + current, 25);
+    // accumulator itu perjumlahan nilai ke 1 dan nilai ke 2
+    // curentvalue itu nilai pertama yang diiterasi yang akan dijumlahkan sesudahnya nilai awal
+    // 25 itu nilai awal dari accumulator
+
+    // method chaining 
+    let hasil = intejer.filter(a => a > 5).map((a) => a * 999e+999).reduce((c, d) => c + d, 1);
+
+
+
+
+
+
+    // ambil semua element video
+    const videos = Array.from(document.querySelectorAll('[data-duration]'));
+    // array.from() untauk merubah yang awalnya nodeList menjadi array
+
+    // pilih yang hanya javascript dan ambil durasinya
+    const jsLanjut = [...videos].filter(video => video.textContent.includes('JAVASCRIPT ADVANCE'))
+    .map(item => item.dataset.duration)
+    //includes untuk mengetahui terdapat apa didalam textContent?
+
+    //ubah string durasinya menjadi float, ubah menit menjadi detik
+    .map(waktu => {
+    // 10:30  -> [10, 30] split
+    const durasi = waktu.split(':').map(part => parseFloat(part))
+    return (durasi[0] * 60) + durasi[1]
+    //split untuk memotong string : menjadi pemotong, lalu hasilnya akan menjadi array
+    })
+    // total durasi
+    .reduce((tambah, durasi) => tambah + durasi, 0);
+
+    // ubah formatnya jadi jam menit detik 
+    const jam = Math.floor(jsLanjut / 60 / 60);
+    const minutes = Math.floor((jsLanjut / 60) % 60);
+    const detik = Math.floor(jsLanjut % 60);
+
+    //simpan di DOM
+    const pDurasi = document.getElementById('total');
+    pDurasi.textContent = `Total durasi video JS ADVANCE adalah ${jam} jam, ${minutes} menit, ${detik} detik.`
+
+    const jmlhVideo = document.getElementById('jmlhVid');
+    const jumlahVideo = videos.filter(video => video.textContent.includes('JAVASCRIPT ADVANCE')).length;
+    jmlhVideo.textContent += `${jumlahVideo}`;
+  </script>
+</body>
+
+</html>

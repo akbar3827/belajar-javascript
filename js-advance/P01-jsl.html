@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      margin: 50px auto;
+      transition: 0.2s width,
+        0.2s height 0.2s,
+        0.2s padding-top 0.2s,
+        0.2s background-color;
+    }
+
+    .size {
+      width: 150px;
+      height: 150px;
+      margin-top: 50px;
+    }
+
+    .capton {
+      background-color: black;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 2rem;
+    }
+
+    h1 span {
+      transition: all .3s ease-in-out;
+      cursor: pointer;
+    }
+
+    h1 span:hover {
+      transform: scale(1.5);
+      color: cadetblue;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box"></div>
+
+  <ul>
+    <li>akbar</li>
+    <li>kabar</li>
+    <li>sabar</li>
+  </ul>
+
+  <h1>AKBAR KURNIADI</h1>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+    </script>
+
+  <script>
+
+    //constructor function
+    //   function Mhs(nama, energy) {
+    //   this.nama = nama,
+    //   this.energy = energy;
+    // };
+    // //prototype function
+    // Mhs.prototype.makan = function (makan) {
+    //   this.energy += makan;
+    //   // return `hai ${this.nama} selamat makan`;
+    // };
+    // Mhs.prototype.main = function (main) {
+    //   this.energy -= main;
+    //   return `hai ${nama} selamat bermain`;
+    // }
+    // Mhs.prototype.__proto__.belajar = function (belajar) {
+    //   this.energy -= belajar;
+    // }
+
+    // let akbar = new Mhs("Akbar", 10);
+
+    // //versi class
+    // class Siswa {
+    //   constructor (nama, energy) {
+    //     this.nama = nama;
+    //     this.energy = energy;
+    //   }
+    //   makan(porsi) {
+    //     this.energy += porsi;
+    //     return `hai ${this.nama} selamat makan`;
+    //   }
+    //   main(jam) {
+    //     this.energy -= jam;
+    //     return `hai ${this.nama} selamat makan`;
+    //   }
+    //   tidur(jam) {
+    //     this.energy += jam * 2;
+    //     return `hai ${this.nama} selamat makan`;
+    //   }
+    // }
+
+
+    function satu() {
+      let nama = 'akbar';
+      console.log(nama);
+    }
+    function dua() {
+      console.log(nama);
+    }
+    console.log(nama);
+    var nama = 'rio';
+    satu();
+    dua('doddy');
+    console.log(nama);
+
+
+
+    function salam(waktu) {
+      return function (nama) {
+        console.log(`selamat ${waktu} ${nama}`)
+      }
+    }
+
+    let isuk = salam('pagi');
+    isuk('akbar');
+
+
+
+    let danaku = (() => {
+      let saldo = 0;
+      return {
+        ceksaldo: () => saldo,
+        setor: (s) => saldo += s,
+        tarik: (t) => saldo -= t,
+      };
+    })(); // ini adalah self invoking anonimous function atau bisa juga immidietely invok function expresion
+
+    let greeting = "say Hi";
+    let times = 4;
+
+    if (times > 3) {
+      let greeting = "say Hello instead";
+      console.log(greeting);// "say Hello instead"
+    }
+    //console.log(hello) // hello is not defined
+
+
+
+
+    // arrow function
+    let array = ['akbar kurniawan', 'rio', 'doddy'];
+
+    console.table(array.map(nama => ({
+      nama, //jika ingin mengubah array nya menjadi object kita harus memnbungkus {} kedalam ()
+      jumlahHuruf: nama.length,
+      energy: 10
+    })));
+
+
+
+
+    //this pada arrow function akan mengacu pada function induk (bukan global)
+    let Nama = function () {
+      this.nama = 'akbar'
+      this.sayHello = () => {
+        console.log(`hallo there, nama saya ${this.nama} dan saya menggunakan arrow function`);
+      }
+    }
+    let jeneng = new Nama();
+
+    // this akan mengacu ke global object
+    const Jeneng = {
+      nama: 'akbarkur',
+      sayhalo: function () {
+        console.log(this);
+      }
+    };
+
+
+
+
+
+
+    //mengubah ukuran box menggunakan event 
+    let box = document.querySelector('.box');
+
+    box.addEventListener('click', function () {
+      let size = 'size';
+      let capton = 'capton';
+
+      if (this.classList.contains(size)) {
+        [size, capton] = [capton, size];
+      }
+      this.classList.toggle(size);
+      setTimeout(() => { //menggunakan arrow function agar this nya merujuk ke box (bukan ke window) jika menggunakan function declaration
+        this.classList.toggle(capton);
+      }, 600);
+    });
+
+
+
+
+
+    const Mhhs = {
+      nama: 'akbar',
+      umur: 20,
+      profesi: 'mahasiswa',
+      nilai: {
+        uts: 94,
+        ipk: 4.0
+      }
+    }
+    function introduc({ nama, profesi, nilai: { uts }, nilai: { ipk } }) {
+      return `hallo nama saya adalah ${nama} dan saya adalah seorang ${profesi}.
+      nilai saya adalah ${uts} dan ipk saya adalah ${ipk}`;
+    }
+
+    console.log(introduc(Mhhs));
+
+
+
+
+
+
+
+    const arr = ['akbar', 'dodddy', 'kurniadi', 'kurniawan', 'bella', 'dahlia'];
+
+    for (const [i, m] of arr.entries()) {
+      console.log(`hallow everyone, nama saya adalah ${m} dan saya berada di urutan ke ${i + 1}`);
+    }
+
+    for (const representasi of arr) {  //for ... of (untuk melooping menggunakan for agar lebih efisien)
+      console.log(representasi);
+    }
+    const namakuu = 'kurniawan'
+    for (const representasi of namakuu) { //bisa juga digunakan untuk melooping setiap huruf string
+      console.log(representasi)
+    }
+
+
+
+    // for .. in
+    const student = {
+      nama: 'akbar',
+      umur: 16,
+      email: 'exp@gmail.com',
+    }
+    for (m in student) {
+      // untuk memanggil key property object menggunakan for in
+      console.log(m);
+      // untuk mengambil value property object menggunakan for in
+      console.log(student[m])
+    };
+
+
+
+    // spread operator
+    // iterebles object terdiri dari : 
+    /* String
+       Array
+       Arguments/Nodelist
+       TypeArray
+       Map
+       Set
+       User-defined Iterables*/
+
+    // memecah iterables menjadi single element
+    const mahasiswa = ['akbar', 'dodddy', 'kurniadi']; // default array yaitu iterables
+    console.log(...mahasiswa); // menambahkan tiga titik fungsinya untuk iterablesnya array dipecah menjadi satu element
+    console.log(...mahasiswa[0]); //string akbar akan dipecah sehingga setiap huruf akan diberi spasi
+
+    const mahasiswa2 = ['aimbar', 'kumbar', 'sibar'];
+    const mahasiswa3 = [...mahasiswa, ...mahasiswa2]; // menggabungkan dua array menjadi satu array
+    const mahasiswa4 = [...mahasiswa, 'aji', 'jojo', ...mahasiswa2]; // menambahkan string baru dan menggabungkan array
+    console.log(mahasiswa3);
+    console.log(mahasiswa4);
+
+    const mahasiswa5 = [...mahasiswa4]; // untuk mengcopy array mhs4
+    mahasiswa5[0] = 'kurniawan'; // mengubah nilai array mhs5
+
+
+    // mengubah node list menjadi array
+    const li = Array.from(document.querySelectorAll('li'));
+    const ray = li.map(m => m.textContent);
+    console.log(ray);
+
+
+    // setiap huruf akan ada animasinya tersendiri
+    const h1 = document.querySelector('h1');
+    const hurufH1 = ([...h1.textContent]).map(m => `<span>${m}</span>`).join('')
+    h1.innerHTML = hurufH1  // menggunakan innerHTML karena ingin mengubah element pada htmlnya juga
+    // kalau menggunakan textContent, spannya akan diproses sebagai string, bukan element
+    console.log(hurufH1)
+
+
+
+
+    // Rest parameter 
+    function myFunc(a, b, ...params) {  // ...params ini untuk memasukkan arguments hingga tak hingga dengan hasil array
+      console.log(`${a} dan ${b} adalah sebagian dari ${params}`)
+    }
+
+    let infinity = myFunc(1, 2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+    function myMath(...int) {
+      let total = 0;
+      for (const a of int) {
+        total += a;
+      }
+      return total;
+    };
+
+    console.log(myMath(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20));
+
+
+
+    // asynchronous call back
+    const a = 'akbar';
+    const b = 'kumbar';
+    const c = 'sibar';
+    console.log(a)  // tampil pertama
+    setTimeout(() => {
+      console.log(b); // tampil ketiga
+    }, 0);
+
+    console.log(c); // tampil kedua
+    // kenapa b tambil ketiga? karena eksekusinya tertunda (jeda) selama setTimeout, jadi yang teresekusi terlebih dahulu yang c.
+
+    // Callback
+    // callback adalah sebuah function yang dikirimkan sebagai parameter pada function yang lain 
+    // bisa juga function yang dieksekusi setelah function lain selesai dijalankan
+
+    // synchronous Callback 
+    function halo(nama) {
+      alert(`hallo ${nama}`);
+
+    };
+    function tampilkanPesan(callback) {
+      let namaku = prompt(`masukkan nama anda :`);
+      callback(namaku);
+    };
+    tampilkanPesan(halo);
+
+
+    // Asynchronous Callback
+    // jQuery
+    console.log('mulai');
+    $.ajax({
+      url: 'mahasiswa.json',
+      succes: (s) => {
+
+      },
+      error: (e) => {
+
+      }
+    })
+    console.log('selesai');
+
+
+    // Promise
+
+    // const xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState === 4) {
+    //     console.log(JSON.parse(xhr.response));
+    //   } else {
+    //     console.log(xhr.responseText);
+    //   }
+    // };
+    // xhr.open('get', 'http://www.omdbapi.com/?apikey=dca61bcc&s=avengers');
+    // xhr.send();
+
+
+    // fetch('http://www.omdbapi.com/?apikey=dca61bcc&s=avengers')
+    // .then(response => response.json())
+    // .then(response => console.log(response))
+
+
+    // promise itu sebauh object yang merepresentasikan keberhasilan / kegagalan sebuah event yang asynchronous dimasa yang akan datang
+    // janji (janji terpehuni / ingkar janji)
+    // state (fulfilled / rejected / panding)
+    // callback (resolve / reject / finally)
+    // aksi (then / catch) then akan menjalankan resolve, dan catch akan menjalankan reject
+
+    // exp :
+    // let ditepati = true;
+    // const janji1 = new Promise((resolve, reject) => {
+    //   if (ditepati) {
+    //     resolve('janji telah ditepati');
+    //   } else {
+    //     reject('janji tidak ditepati');
+    //   }
+    // });
+    // janji1.then(terpenuhi => console.log(terpenuhi)).catch(tidakTerpenuhi => console.log(tidakTerpenuhi));
+
+    // exp 2 :
+    let ditepati2 = true;
+    const janji2 = new Promise((resolve, reject) => {
+      if (ditepati2) {
+        setTimeout(() => {
+          resolve('janji telah terpenuhi');
+        }, 2000);
+      } else {
+        setTimeout(() => {
+          reject('janji tidak terpenuhi');
+        }, 2000);
+      };
+    });
+    janji2
+      .finally(() => console.log('proses selesai'))
+      .then(terpenuhi => console.log(terpenuhi))
+      .catch(tidakTerpenuhi => console.log(tidakTerpenuhi))
+      .finally(() => console.log('selesai'));
+
+
+    // promise.all()
+    const film = new Promise(resolve => {
+      setTimeout(() => {
+        resolve([{
+          judul: 'avengers',
+          sutradara: 'marvel',
+          actor: 'doddy, sugeng',
+          launching: 2019
+        }]);
+      }, 1000)
+    });
+
+    const cuaca = new Promise(resolve => {
+      setTimeout(() => {
+        resolve([{
+          lokasi: 'jakarta',
+          temp: 20,
+          cuaca: 'cerah berawan'
+        }]);
+      }, 1000)
+    });
+    Promise.all([film, cuaca])
+      .then(respon => {   
+        let [film, cuaca] = respon
+        console.log(cuaca);
+        console.log(film);
+      });
+  </script>
+</body>
+
+</html>
