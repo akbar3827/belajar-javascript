@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    class Employee {
+      constructor(firstName) {
+        this.namaDepan = firstName;
+      }
+      sayHello(nama) {
+        console.log(`hai ${nama}, nama saya adalah ${this.namaDepan} ${this.namaBelakang}`)
+      }
+    }
+
+    class Manager extends Employee {
+      constructor(firstName, lastName) {
+        super(firstName);
+        this.namaBelakang = lastName
+      }
+
+    }
+
+    const bar = new Manager('akbar', 'kurniawan');
+    bar.sayHello('joko');
+
+    console.log(bar)
+
+    class person {
+      constructor(nama) {
+        this.nama = nama;
+      }
+      get nama() {
+        return this._nama;
+      }
+      set nama(newName) {
+        newName = newName.trim();
+        if (newName === "") {
+          alert('nama tidak boleh kosong!');
+          throw "nama tidak boleh kosong!"
+        }
+        this._nama = newName;
+      }
+    }
+
+    const person1 = new person('kebar')
+    console.log(person1.nama)
+
+
+
+    // publik 
+    class Customer {
+      namaku;
+      namamu;
+      constructor(nama1, nama2) {
+        this.namaku = nama1;
+        this.namamu = nama2;
+      }
+      sayHello() {
+
+      }
+    }
+
+    const p = new Customer('akbar', 'kurniawan')
+    console.log(p)
+
+    class ICounter {
+      #counter = 0
+      increment() {
+        return this.#counter++;
+      }
+      decrement() {
+        return this.#counter--;
+      }
+      get() {
+        return this.#counter;
+      }
+    }
+
+    const counter = new ICounter();
+
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    console.log(counter.get());
+
+
+    // iterable dan iterator
+    class CounterIteratorResult {
+      constructor(value, done) {
+        this.value = value;
+        this.done = done;
+      }
+    }
+
+    class CounterIterator {
+      constructor(value, max) {
+        this.value = value;
+        this.max = max;
+      }
+
+      next() {
+        try {
+          if (this.value > this.max) {
+            return new CounterIteratorResult(this.value, true);
+          } else {
+            return new CounterIteratorResult(this.value, false);
+          }
+        } finally {
+          this.value *= 9;
+        }
+      }
+    }
+
+    class Counter {
+      constructor(value, max) {
+        this.value = value;
+        this.max = max;
+      };
+      [Symbol.iterator]() {
+        return new CounterIterator(this.value, this.max);
+      }
+    }
+
+    const conter = new Counter(1, 99999);
+    for (const e of conter) {
+      console.info(e);
+    }
+
+
+
+  let priv =  (function () {
+      let a = 0
+      return function () {
+        return ++a;
+      }
+    })();
+
+    console.log(priv())
+    console.log(priv())
+    console.log(priv())
+    console.log(priv())
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+- nullish coalescing operator
+    untuk memberikan nilai default kalau sebuah variabel bernilai null atau undefined.
+- optional chaining
+    untuk mengakses properti dalam object dengan aman, tanpa bikin error kalau object atau propertinya ternyata null atau undefined.
+- while 
+    untuk looping tetapi dicek dulu kondisinya
+- do while
+    untuk looping tetapi dijalankan dulu 1x codenya lalu dicek kondisinya.
+ - break
+    untuk menghentikan looping
+ - continue
+    untuk melanjutkan code dan kode setelahnya tidak akan di kerjakan
+- label
+    label adalah penanda yang bisa kamu tempelin di statement apa saja, bukan cuma loop
+- for in
+    untuk perulangan yang diiterasi hanya nama property nya saja, value tidak akan diiterasi
+with() {}
+    with adalah statement di JavaScript yang dipakai untuk memperpendek akses ke properti object.
+...<rest parameter>
+    rest parameter akan menampung banyak sekali value (tidak terbatas)

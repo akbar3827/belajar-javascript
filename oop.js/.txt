@@ -1,0 +1,27 @@
+class
+  untuk membuat blueprint.
+Keywoard :
+  - extends
+      untuk mewarisi class baru
+  - super 
+      dipakai untuk mewarisi constructur dari class lain.
+  - getter & setter
+      get()
+        untuk mengambil nilai property
+      set(value)
+        sedangkan set untuk mengubah/mengisi nilai property.
+    getter dan setter penting untuk menghindari typo ataupun kesalahan lainnya
+  - instanceof <nama class>
+      untuk mengecek berada di class mana (hasilnya akan berupa boolean)
+  - static
+      jika kita menambahkan static dalam class field, secara otomatis field tersebut bukan lagi milik instance object, melainkan
+      milik classnya itu sendiri.
+      biasanya static digunakan jika kita ingin membuat utility field atau utility method
+  - throw new Error('')
+      melempar error dengan pesan jelas
+  - try {}
+    untuk mencoba bila terjadi error, jika terjadi error maka ditangkan oleh catch
+  -catch {}
+    catch untuk menangkap error yang terjadi di try{}
+  - finally 
+    
