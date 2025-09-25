@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Konsep Dasar Async/Await
+
+
+      //Bayangkan kamu sedang memasak. Kamu butuh merebus air (tugas asynchronous).
+
+      //Cara tradisional (tanpa async/await):
+      //Kamu taruh panci di kompor, terus kamu duduk dan nungguin air sampai mendidih. Selama nungguin,
+      // kamu nggak bisa ngapa-ngapain. Ini seperti blocking; kode kamu "terhenti" sampai tugas selesai.
+      //  Ini enggak efisien.
+
+      //Dengan async/await:
+      //Kamu taruh panci di kompor, terus kamu bilang, "Nanti kalau sudah mendidih, kasih tahu saya ya."  
+      // Lalu, kamu pergi ngerjain hal lain, misalnya motong sayuran. Setelah panci mendidih (tugas selesai),
+      //  kompornya "manggil" kamu lagi. Ini seperti non-blocking; kamu bisa ngerjain tugas lain sambil menunggu.
+
+
+      // Dalam JavaScript, async dan await bekerja seperti ini:
+
+      // async: Ini adalah kata kunci yang kamu taruh di depan sebuah fungsi. Ini menandakan bahwa fungsi tersebut akan 
+      // berjalan secara asynchronous dan selalu mengembalikan sebuah Promise. Jadi, fungsi ini "berjanji" akan memberikan hasil
+      //  di masa depan, entah itu sukses atau gagal.
+
+      // await: Ini adalah kata kunci yang hanya bisa digunakan di dalam fungsi async. await "menunggu" sampai sebuah Promise selesai 
+      // dieksekusi (berhasil atau gagal). Saat await dijalankan, JavaScript akan menghentikan eksekusi di fungsi async itu saja**, tapi 
+      // tidak menghentikan program utama. Ini memungkinkan tugas-tugas lain berjalan di "background". Setelah Promise yang di await`
+      //  selesai, kode akan melanjutkan lagi dari titik itu.
+    </script>
+  </body>
+</html>
